@@ -3,15 +3,14 @@ import './App.css';
 import Recipe from './components/Recipe.js';
 
 function App() {
-  const APP_ID = 'dc964354';
-  const APP_KEY = '2646d043b172e82a62e0521ec91c8155';
+  console.log(process.env)
 
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState('');
   const [query, setQuery] = useState('beef');
 
   useEffect(() => {
-    fetch(`https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`)
+    fetch(`https://api.edamam.com/search?q=${query}&app_id=${process.env.APP_ID}&app_key=${process.env.APP_KEY}`)
       .then(res => res.json())
       .then(data => setRecipes(data.hits))
     console.log('effected')
